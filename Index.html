@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Surprise For My Love</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Pacifico&family=Comic+Neue:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ffe6f0 0%, #ffd1e0 50%, #ffc2d6 100%);
+            color: #7a3b5a;
+            min-height: 100vh;
+            overflow-x: hidden;
+            transition: background 1s ease;
+        }
+
+        /* Welcome Section */
+        .welcome-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+            transition: opacity 0.8s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 4rem;
+            color: #e84393;
+            margin-bottom: 10px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
+            z-index: 5;
+        }
+
+        .welcome-subtitle {
+            font-size: 1.6rem;
+            color: #a85c7e;
+            margin-bottom: 40px;
+            max-width: 700px;
+            line-height: 1.6;
+            z-index: 5;
+        }
+
+        .date-box {
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 20px;
+            padding: 20px 40px;
+            margin: 30px 0;
+            box-shadow: 0 10px 25px rgba(232, 67, 147, 0.2);
+            backdrop-filter: blur(10px);
+            border: 3px solid #ffb6c1;
+            z-index: 5;
+        }
+
+        .date-text {
+            font-family: 'Comic Neue', cursive;
+            font-size: 2.2rem;
+            color: #e84393;
+            font-weight: 700;
+        }
+
+        .date-note {
+            font-size: 1.2rem;
+            color: #a85c7e;
+            margin-top: 10px;
+        }
+
+        .surprise-btn {
+            background: linear-gradient(45deg, #e84393, #ff7eb3);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 20px 50px;
+            font-size: 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 30px;
+            box-shadow: 0 10px 20px rgba(232, 67, 147, 0.3);
+            transition: all 0.3s ease;
+            z-index: 5;
+            font-family: 'Comic Neue', cursive;
+            opacity: 1;
+        }
+
+        .surprise-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 25px rgba(232, 67, 147, 0.4);
+        }
+
+        .surprise-btn:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        /* Birthday Scene */
+        .birthday-scene {
+            display: none;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            min-height: 100vh;
+            padding: 30px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scene-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 3.5rem;
+            color: #e84393;
+            margin: 20px 0;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            animation: fadeIn 1s forwards 0.5s;
+        }
+
+        .instruction {
+            font-family: 'Comic Neue', cursive;
+            font-size: 1.8rem;
+            color: #ff4081;
+            margin: 15px 0;
+            text-align: center;
+            min-height: 60px;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        /* Cake */
+        .cake-container {
+            position: relative;
+            width: 300px;
+            height: 350px;
+            margin: 20px auto;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .cake {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.5s ease;
+        }
+
+        .cake:hover {
+            transform: scale(1.02);
+        }
+
+        .cake-bottom {
+            width: 240px;
+            height: 110px;
+            background: linear-gradient(to top, #ffb6c1, #ffd1dc);
+            border-radius: 50% 50% 0 0;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .cake-middle {
+            width: 200px;
+            height: 90px;
+            background: linear-gradient(to top, #ff8fab, #ffb3c6);
+            border-radius: 50% 50% 0 0;
+            position: relative;
+            z-index: 3;
+            margin-top: -50px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .cake-top {
+            width: 160px;
+            height: 70px;
+            background: linear-gradient(to top, #fb6f92, #ff8fab);
+            border-radius: 50% 50% 0 0;
+            position: relative;
+            z-index: 4;
+            margin-top: -40px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .candle {
+            width: 10px;
+            height: 50px;
+            background: linear-gradient(to top, #ffde59, #ffb347);
+            border-radius: 5px;
+            position: absolute;
+            top: -60px;
+            z-index: 5;
+            box-shadow: 0 0 10px rgba(255, 222, 89, 0.5);
+        }
+
+        .candle:nth-child(1) { left: 40%; }
+        .candle:nth-child(2) { left: 50%; transform: translateX(-50%); }
+        .candle:nth-child(3) { left: 60%; }
+
+        .flame {
+            width: 24px;
+            height: 35px;
+            background: linear-gradient(to top, #ff9500, #ffde59);
+            border-radius: 50% 50% 20% 20%;
+            position: absolute;
+            top: -95px;
+            z-index: 6;
+            animation: flicker 0.8s infinite alternate;
+            box-shadow: 0 0 25px #ff9500;
+        }
+
+        .flame:nth-child(4) { left: 40%; }
+        .flame:nth-child(5) { left: 50%; transform: translateX(-50%); }
+        .flame:nth-child(6) { left: 60%; }
+
+        /* Blow Button */
+        .blow-btn {
+            background: linear-gradient(45deg, #36d1dc, #5b86e5);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 40px;
+            font-size: 1.4rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 8px 20px rgba(54, 209, 220, 0.3);
+            transition: all 0.3s ease;
+            font-family: 'Comic Neue', cursive;
+            opacity: 0;
+            z-index: 15;
+        }
+
+        .blow-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(54, 209, 220, 0.4);
+        }
+
+        /* Messages */
+        .message-container {
+            max-width: 800px;
+            margin: 30px auto;
+            text-align: center;
+            opacity: 0;
+        }
+
+        .birthday-message {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: #e84393;
+            margin-bottom: 30px;
+            min-height: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .love-message-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border: 3px solid #ffb6c1;
+            text-align: left;
+            opacity: 0;
+            max-width: 900px;
+        }
+
+        .love-message {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2rem;
+            line-height: 1.8;
+            color: #7a3b5a;
+            margin-bottom: 25px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+        }
+
+        .message-signature {
+            font-family: 'Pacifico', cursive;
+            font-size: 2rem;
+            font-style: italic;
+            margin-top: 40px;
+            color: #e84393;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+            border-top: 2px dashed #ffb6c1;
+            padding-top: 20px;
+        }
+
+        /* Floating Elements */
+        .floating-element {
+            position: absolute;
+            z-index: 1;
+            opacity: 0.7;
+            animation: float 6s infinite ease-in-out;
+            pointer-events: none;
+        }
+
+        /* Fireworks */
+        .firework {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #ff6bcb;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes flicker {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.9; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-25px) rotate(5deg); }
+        }
+
+        @keyframes firework {
+            0% { transform: translate(var(--x), var(--initialY)); width: 5px; height: 5px; opacity: 1; }
+            50% { width: 5px; height: 5px; opacity: 1; }
+            100% { transform: translate(var(--x), var(--y)); width: 180px; height: 180px; opacity: 0; }
+        }
+
+        @keyframes blowCandle {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(0); opacity: 0; }
+        }
+
+        @keyframes smoke {
+            0% { transform: translateY(0) scale(1); opacity: 0.7; }
+            100% { transform: translateY(-50px) scale(1.5); opacity: 0; }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .welcome-title {
+                font-size: 3.2rem;
+            }
+            
+            .date-text {
+                font-size: 1.8rem;
+            }
+            
+            .surprise-btn {
+                padding: 18px 40px;
+                font-size: 1.4rem;
+            }
+            
+            .scene-title {
+                font-size: 2.8rem;
+            }
+            
+            .instruction {
+                font-size: 1.5rem;
+            }
+            
+            .birthday-message {
+                font-size: 2.8rem;
+            }
+            
+            .love-message {
+                font-size: 1.8rem;
+            }
+            
+            .message-signature {
+                font-size: 1.6rem;
+            }
+            
+            .cake-container {
+                width: 250px;
+                height: 300px;
+            }
+            
+            .cake-bottom {
+                width: 200px;
+                height: 90px;
+            }
+            
+            .cake-middle {
+                width: 170px;
+                height: 75px;
+                margin-top: -40px;
+            }
+            
+            .cake-top {
+                width: 140px;
+                height: 60px;
+                margin-top: -35px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .welcome-title {
+                font-size: 2.5rem;
+            }
+            
+            .welcome-subtitle {
+                font-size: 1.3rem;
+            }
+            
+            .date-box {
+                padding: 15px 25px;
+            }
+            
+            .date-text {
+                font-size: 1.5rem;
+            }
+            
+            .surprise-btn {
+                padding: 16px 35px;
+                font-size: 1.2rem;
+            }
+            
+            .scene-title {
+                font-size: 2.2rem;
+            }
+            
+            .instruction {
+                font-size: 1.3rem;
+            }
+            
+            .birthday-message {
+                font-size: 2.2rem;
+            }
+            
+            .love-message {
+                font-size: 1.5rem;
+            }
+            
+            .message-signature {
+                font-size: 1.4rem;
+            }
+            
+            .love-message-container {
+                padding: 25px;
+            }
+            
+            .cake-container {
+                width: 200px;
+                height: 250px;
+            }
+            
+            .cake-bottom {
+                width: 160px;
+                height: 70px;
+            }
+            
+            .cake-middle {
+                width: 130px;
+                height: 60px;
+                margin-top: -30px;
+            }
+            
+            .cake-top {
+                width: 110px;
+                height: 50px;
+                margin-top: -25px;
+            }
+            
+            .candle {
+                height: 40px;
+                top: -50px;
+            }
+            
+            .flame {
+                top: -80px;
+                width: 18px;
+                height: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Welcome Section -->
+    <div class="welcome-container" id="welcomeContainer">
+        <h1 class="welcome-title">🎂 A Surprise For My Love 💖</h1>
+        <p class="welcome-subtitle">Your special celebration awaits!</p>
+        
+        <div class="date-box">
+            <div class="date-text">🎀 December 30th 🎀</div>
+            <div class="date-note">The day we celebrate you!</div>
+        </div>
+        
+        <!-- Surprise Button (Always Visible) -->
+        <button class="surprise-btn" id="surpriseBtn">
+            <i class="fas fa-crown"></i> A Surprise For My Princess <i class="fas fa-crown"></i>
+        </button>
+        
+        <!-- Floating hearts -->
+        <div class="floating-element" style="left: 15%; top: 30%; font-size: 2rem; color: #ff7eb3; animation-delay: 0.5s;">❤️</div>
+        <div class="floating-element" style="right: 20%; top: 40%; font-size: 2.5rem; color: #ff4081; animation-delay: 1.2s;">💖</div>
+        <div class="floating-element" style="left: 25%; top: 70%; font-size: 2rem; color: #e84393; animation-delay: 2.5s;">💗</div>
+        <div class="floating-element" style="right: 25%; top: 75%; font-size: 2.2rem; color: #ff7eb3; animation-delay: 3.8s;">💝</div>
+    </div>
+
+    <!-- Birthday Scene -->
+    <div class="birthday-scene" id="birthdayScene">
+        <h1 class="scene-title">Your Special Day! ✨</h1>
+        
+        <div class="instruction" id="instruction">Make a wish and blow out the candles!</div>
+        
+        <!-- Cake -->
+        <div class="cake-container" id="cakeContainer">
+            <div class="cake" id="cake">
+                <div class="cake-bottom"></div>
+                <div class="cake-middle"></div>
+                <div class="cake-top"></div>
+                <div class="candle"></div>
+                <div class="candle"></div>
+                <div class="candle"></div>
+                <div class="flame"></div>
+                <div class="flame"></div>
+                <div class="flame"></div>
+            </div>
+        </div>
+        
+        <button class="blow-btn" id="blowBtn">💨 Blow Candles!</button>
+        
+        <!-- Messages -->
+        <div class="message-container" id="messageContainer">
+            <div class="birthday-message" id="birthdayMessage"></div>
+            
+            <div class="love-message-container" id="loveMessageContainer">
+                <div class="love-message" id="loveMessage1"></div>
+                <div class="love-message" id="loveMessage2"></div>
+                <div class="love-message" id="loveMessage3"></div>
+                <div class="love-message" id="loveMessage4"></div>
+                <div class="message-signature" id="signature"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const welcomeContainer = document.getElementById('welcomeContainer');
+        const birthdayScene = document.getElementById('birthdayScene');
+        const surpriseBtn = document.getElementById('surpriseBtn');
+        
+        const cakeContainer = document.getElementById('cakeContainer');
+        const cake = document.getElementById('cake');
+        const instruction = document.getElementById('instruction');
+        const blowBtn = document.getElementById('blowBtn');
+        const birthdayMessage = document.getElementById('birthdayMessage');
+        const loveMessageContainer = document.getElementById('loveMessageContainer');
+        const loveMessages = document.querySelectorAll('.love-message');
+        const signature = document.getElementById('signature');
+        
+        // Show Birthday Scene with Fireworks
+        function showBirthdayScene() {
+            welcomeContainer.style.opacity = '0';
+            setTimeout(() => {
+                welcomeContainer.style.display = 'none';
+                birthdayScene.style.display = 'flex';
+                
+                // Start fireworks immediately
+                startFireworks();
+                
+                // Create floating elements
+                createFloatingElements();
+                
+                // Show instruction after a short delay
+                setTimeout(() => {
+                    instruction.style.opacity = '1';
+                }, 1000);
+                
+                // Show blow button after a delay
+                setTimeout(() => {
+                    blowBtn.style.opacity = '1';
+                }, 2000);
+            }, 800);
+        }
+        
+        // Create Floating Elements
+        function createFloatingElements() {
+            const elementTypes = ['❤️', '🧸', '🌸', '🎀', '🎂', '✨', '💖', '🎁', '💕', '💘'];
+            const colors = ['#ff9ec0', '#ffb6c1', '#ffd1dc', '#ff9ec0', '#ff8fab', '#fb6f92', '#e84393', '#ffb6c1', '#ff9ec0', '#ff8fab'];
+            
+            for (let i = 0; i < 20; i++) {
+                const element = document.createElement('div');
+                element.className = 'floating-element';
+                element.innerHTML = elementTypes[i % elementTypes.length];
+                element.style.fontSize = Math.random() * 24 + 20 + 'px';
+                element.style.color = colors[i % colors.length];
+                element.style.left = Math.random() * 100 + 'vw';
+                element.style.top = Math.random() * 100 + 'vh';
+                element.style.animationDelay = Math.random() * 5 + 's';
+                element.style.animationDuration = Math.random() * 10 + 10 + 's';
+                
+                birthdayScene.appendChild(element);
+            }
+        }
+        
+        // Start Fireworks
+        function startFireworks() {
+            function createFirework() {
+                const firework = document.createElement('div');
+                firework.className = 'firework';
+                
+                // Random position
+                const x = Math.random() * 100;
+                const y = Math.random() * 100;
+                
+                // Random color
+                const colors = ['#ff6bcb', '#ffb8e2', '#ff9ec0', '#ff8fab', '#fb6f92', '#36d1dc', '#5b86e5'];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+            
