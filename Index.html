@@ -559,76 +559,70 @@
     </div>
 
     <script>
-        // DOM Elements
-        const welcomeContainer = document.getElementById('welcomeContainer');
-        const birthdayScene = document.getElementById('birthdayScene');
-        const surpriseBtn = document.getElementById('surpriseBtn');
-        
-        const cakeContainer = document.getElementById('cakeContainer');
-        const cake = document.getElementById('cake');
-        const instruction = document.getElementById('instruction');
-        const blowBtn = document.getElementById('blowBtn');
-        const birthdayMessage = document.getElementById('birthdayMessage');
-        const loveMessageContainer = document.getElementById('loveMessageContainer');
-        const loveMessages = document.querySelectorAll('.love-message');
-        const signature = document.getElementById('signature');
-        
-        // Show Birthday Scene with Fireworks
-        function showBirthdayScene() {
-            welcomeContainer.style.opacity = '0';
-            setTimeout(() => {
-                welcomeContainer.style.display = 'none';
-                birthdayScene.style.display = 'flex';
-                
-                // Start fireworks immediately
-                startFireworks();
-                
-                // Create floating elements
-                createFloatingElements();
-                
-                // Show instruction after a short delay
-                setTimeout(() => {
-                    instruction.style.opacity = '1';
-                }, 1000);
-                
-                // Show blow button after a delay
-                setTimeout(() => {
-                    blowBtn.style.opacity = '1';
-                }, 2000);
-            }, 800);
-        }
-        
-        // Create Floating Elements
-        function createFloatingElements() {
-            const elementTypes = ['❤️', '🧸', '🌸', '🎀', '🎂', '✨', '💖', '🎁', '💕', '💘'];
-            const colors = ['#ff9ec0', '#ffb6c1', '#ffd1dc', '#ff9ec0', '#ff8fab', '#fb6f92', '#e84393', '#ffb6c1', '#ff9ec0', '#ff8fab'];
+        // Wait for DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM Elements
+            const welcomeContainer = document.getElementById('welcomeContainer');
+            const birthdayScene = document.getElementById('birthdayScene');
+            const surpriseBtn = document.getElementById('surpriseBtn');
             
-            for (let i = 0; i < 20; i++) {
-                const element = document.createElement('div');
-                element.className = 'floating-element';
-                element.innerHTML = elementTypes[i % elementTypes.length];
-                element.style.fontSize = Math.random() * 24 + 20 + 'px';
-                element.style.color = colors[i % colors.length];
-                element.style.left = Math.random() * 100 + 'vw';
-                element.style.top = Math.random() * 100 + 'vh';
-                element.style.animationDelay = Math.random() * 5 + 's';
-                element.style.animationDuration = Math.random() * 10 + 10 + 's';
+            const cakeContainer = document.getElementById('cakeContainer');
+            const cake = document.getElementById('cake');
+            const instruction = document.getElementById('instruction');
+            const blowBtn = document.getElementById('blowBtn');
+            const birthdayMessage = document.getElementById('birthdayMessage');
+            const loveMessageContainer = document.getElementById('loveMessageContainer');
+            const loveMessages = document.querySelectorAll('.love-message');
+            const signature = document.getElementById('signature');
+            
+            // Add floating elements to welcome page
+            function addWelcomeFloaters() {
+                const elementTypes = ['🌸', '🎀', '✨', '💝', '💖', '💗'];
                 
-                birthdayScene.appendChild(element);
+                for (let i = 0; i < 10; i++) {
+                    const element = document.createElement('div');
+                    element.className = 'floating-element';
+                    element.innerHTML = elementTypes[i % elementTypes.length];
+                    element.style.fontSize = Math.random() * 20 + 15 + 'px';
+                    element.style.color = '#ff7eb3';
+                    element.style.left = Math.random() * 100 + 'vw';
+                    element.style.top = Math.random() * 100 + 'vh';
+                    element.style.animationDelay = Math.random() * 5 + 's';
+                    element.style.animationDuration = Math.random() * 15 + 10 + 's';
+                    
+                    welcomeContainer.appendChild(element);
+                }
             }
-        }
-        
-        // Start Fireworks
-        function startFireworks() {
-            function createFirework() {
-                const firework = document.createElement('div');
-                firework.className = 'firework';
-                
-                // Random position
-                const x = Math.random() * 100;
-                const y = Math.random() * 100;
-                
-                // Random color
-                const colors = ['#ff6bcb', '#ffb8e2', '#ff9ec0', '#ff8fab', '#fb6f92', '#36d1dc', '#5b86e5'];
-                const color = colors[Math.floor(Math.random() * colors.length)];
             
+            // Show Birthday Scene with Fireworks
+            function showBirthdayScene() {
+                welcomeContainer.style.opacity = '0';
+                setTimeout(() => {
+                    welcomeContainer.style.display = 'none';
+                    birthdayScene.style.display = 'flex';
+                    
+                    // Start fireworks immediately
+                    startFireworks();
+                    
+                    // Create floating elements
+                    createFloatingElements();
+                    
+                    // Show instruction after a short delay
+                    setTimeout(() => {
+                        instruction.style.opacity = '1';
+                    }, 1000);
+                    
+                    // Show blow button after a delay
+                    setTimeout(() => {
+                        blowBtn.style.opacity = '1';
+                    }, 2000);
+                }, 800);
+            }
+            
+            // Create Floating Elements
+            function createFloatingElements() {
+                const elementTypes = ['❤️', '🧸', '🌸', '🎀', '🎂', '✨', '💖', '🎁', '💕', '💘'];
+                const colors = ['#ff9ec0', '#ffb6c1', '#ffd1dc', '#ff9ec0', '#ff8fab', '#fb6f92', '#e84393', '#ffb6c1', '#ff9ec0', '#ff8fab'];
+                
+                for (let i = 0; i < 20; i++) {
+                    const element = document.c
